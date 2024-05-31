@@ -1,0 +1,19 @@
+
+<h1>Document Management System</h1>
+
+<br>
+Login:
+
+<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class = "form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" formControlName="username" required>
+    </div>
+    <br>
+    <div class = "form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" formControlName="password" required>
+    </div>
+    <br>
+    <button type="submit">Login</button>
+</form>

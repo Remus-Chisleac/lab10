@@ -63,6 +63,27 @@ app.MapGet("/api/get_documents", async (string format) =>
     return documents;
 });
 
+app.MapGet("/login", async (string username, string password) =>
+{
+    Console.WriteLine("/login");
+
+    string insertUserQuery = $"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'";
+
+    using (MySqlConnection connection = new MySqlConnection(connectionString))
+    {
+        connection.Open();
+        MySqlCommand command = new MySqlCommand(insertUserQuery, connection);
+        using (var reader = await command.ExecuteReaderAsync())
+        {
+            if (await reader.ReadAsync())
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+});
+
 app.MapPost("/api/add_document", async (string title, string author, string format, string pages) =>
 {
     Console.WriteLine("/api/add_document");

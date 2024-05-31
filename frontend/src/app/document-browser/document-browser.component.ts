@@ -120,6 +120,6 @@ export class DocumentBrowserComponent {
   }
 
   back(){
-    this.router.navigate(['/']);
+    this.router.navigate(['home']);
   }
 }

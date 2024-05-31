@@ -52,12 +52,12 @@ export class AddDocumentComponent {
       '&pages=' + this.documentForm.value.pages;
       this.documentsService.addDocument('http://localhost:5034/api/add_document', params)
       .subscribe(()=> {
-        this.router.navigateByUrl('/');
+        this.router.navigate(['documentBrowser']);
       });
     }
   }
 
   back(){
-    this.router.navigateByUrl('/');
+    this.router.navigate(['documentBrowser']);
   }
 }
