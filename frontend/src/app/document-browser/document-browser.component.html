@@ -1,0 +1,43 @@
+<body>
+    <h2>Document Browser</h2>
+    <label for="format">Filter by Format:</label>
+    <select ng-model="selectedFormat" (change)="loadDocuments($event)">
+        <option *ngFor="let format of Formats" [value]="format.value"> {{format.name}}</option>
+        <!-- Add more options for other formats -->
+    </select>
+
+    <ul>
+        <li *ngFor="let document of documents" (click)="showDocument(document.id)">
+            <span>Title:{{document.title}}, Author: {{document.author}}, NrPages: {{document.pages}}, Format:
+                {{document.format}} </span>
+        </li>
+    </ul>
+    <div *ngIf="SelectedDocument !== undefined" id="document_details">
+        <h3>Document Details</h3>
+        <form class="form" [formGroup]="documentForm" (ngSubmit)="updateDocument()">
+            <div class = "">
+                <label for="author">Author:</label>
+                <input type="text" name="author" formControlName="author" required>
+            </div>
+            <br>
+            <div class = "form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" formControlName="title" required>
+            </div>
+            <br>
+            <div class = "form-group">
+                <label for="pages">Pages:</label>
+                <input type="number"  name="pages" formControlName="pages" required>
+            </div>
+            <br>
+            <div class = "form-group">
+                <label for="format">Format:</label>
+                <input type="text"  name="format" formControlName="format" required>
+            </div>
+            <br>
+            <button type="submit">Update Document</button>
+        </form>
+        <button (click)="deleteDocument()">Delete</button>
+    </div>
+    <button (click)="back()">Go Back</button>
+</body>
